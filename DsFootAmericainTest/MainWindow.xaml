@@ -1,0 +1,73 @@
+﻿<Window x:Class="DsFootAmericainTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:DsFootAmericainTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Name="Globale">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="Equipe" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="Equipes : " HorizontalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding ClearSelectedEquipe}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Label>
+            <ListBox x:Name="ListEquipes" ItemsSource="{Binding ListEquipes}" SelectedItem="{Binding SelectedEquipe}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+        <Grid Name="Joueurs" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+            <Label Name="labListJoueurs" Grid.Row="0" Content="Joueurs : " HorizontalAlignment="Center">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding ClearSelectedJoueur}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Label>
+            <ListBox x:Name="ListJoueurs" ItemsSource="{Binding ListJoueurs}" SelectedItem="{Binding SelectedJoueur}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+        <Grid Name="IDJoueur" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="28*" />
+                <RowDefinition Height="28*" />
+                <RowDefinition Height="55.646" />
+                <RowDefinition Height="28*" />
+                <RowDefinition Height="28*" />
+                <RowDefinition Height="39*" />
+                <RowDefinition Height="39*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2.5*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Nom Joueur : " Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
+            <TextBox Name="EdNom" Text="{Binding Nom}" Grid.Row="0" Grid.Column="1" Margin="10"/>
+            <Label Content="Date de Naissance : " Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
+            <DatePicker Name="dateNaiss" SelectedDate="{Binding DateNaissance}" Grid.Column="1" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Center"/>
+            <Label Content="Date d'Entrée : " Grid.Row="2" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
+            <DatePicker Name="dateEntree" SelectedDate="{Binding DateEntree}" Grid.Column="1" HorizontalAlignment="Left" Margin="12,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
+            <Label Content="Pays d'origine : " Grid.Row="3" Grid.Column="0" Margin="10" VerticalAlignment="Center" />
+            <ComboBox Name="listPays" ItemsSource="{Binding ListPays}" SelectedItem="{Binding SelectedPays}" IsSynchronizedWithCurrentItem="True" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+            <Label Content="Poste : " Grid.Row="4" Grid.Column="0" Margin="10" VerticalAlignment="Center"/>
+            <ComboBox Name="listPostes" ItemsSource="{Binding ListPostes}" SelectedItem="{Binding SelectedPoste}" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+            <Button Name="BpModif" Command="{Binding Update}" Content="Mettre à jour" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
+            <Button Name="BpAjout" Command="{Binding Add}" Content="Ajouter" Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
+            <Button Name="BpSupp" Command="{Binding Delete}" Content="Supprimer" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" />
+        </Grid>
+    </Grid>
+</Window>
